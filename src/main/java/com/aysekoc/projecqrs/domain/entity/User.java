@@ -19,9 +19,12 @@ import java.util.UUID;
 public class User {
     @UuidGenerator
     @Id
+    @Column(name="id")
     private UUID id;
 
+    @Column(name="email")
     private String email;
 
+    @Column(name="password")
     private String password;
 }

@@ -9,15 +9,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@SuppressWarnings("rawtypes")
 public class PipelineConfiguration {
 
     @Bean
-    Pipeline pipeline(ObjectProvider<Command.Handler> commandHandlers,
-                      ObjectProvider<Notification.Handler> notificationHandlers,
-                      ObjectProvider<Command.Middleware> middlewares){
+    public Pipeline pipeline(
+            ObjectProvider<Command.Handler> commandHandlers,
+            ObjectProvider<Notification.Handler> notificationHandlers,
+            ObjectProvider<Command.Middleware> middlewares) {
+
         return new Pipelinr()
-                .with(commandHandlers::stream)
-                .with(notificationHandlers::stream)
-                .with(middlewares::orderedStream);
+                .with(() -> commandHandlers.stream())
+                .with(() -> notificationHandlers.stream())
+                .with((Command.Middlewares) middlewares::orderedStream);
     }
 }
