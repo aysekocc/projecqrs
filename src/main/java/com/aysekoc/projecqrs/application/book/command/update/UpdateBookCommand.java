@@ -31,9 +31,8 @@ public class UpdateBookCommand implements Command<UpdatedBookResponse> {
                     .orElseThrow(() -> new RuntimeException("Book not found!"));
 
             book.setName(command.getName());
-            bookRepository.save(book);
-
-            return new UpdatedBookResponse();
+            Book kaydet = bookRepository.save(book);
+            return new UpdatedBookResponse(kaydet.getId(), kaydet.getName());
         }
     }
 }

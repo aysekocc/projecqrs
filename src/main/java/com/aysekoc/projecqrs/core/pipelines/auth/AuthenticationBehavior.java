@@ -8,11 +8,9 @@ public class AuthenticationBehavior implements Command.Middleware{
 
     @Override
     public <R, C extends Command<R>> R invoke(C c, Next<R> next) {
-
         System.out.println("BEFORE: AuthenticationBehavior invoked");
        var response = next.invoke();
        System.out.println("AFTER: AuthenticationBehavior invoked");
-
         return response;
     }
 }
