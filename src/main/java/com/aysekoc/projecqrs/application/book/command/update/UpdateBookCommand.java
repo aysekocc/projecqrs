@@ -22,7 +22,7 @@ public class UpdateBookCommand implements Command<UpdatedBookResponse> {
 
     @Component
     @AllArgsConstructor
-    public static class UpdateBookCommandHandler implements Command.Handler<UpdateBookCommand, UpdatedBookResponse>{
+    public static class UpdateBookCommandHandler implements Command.Handler<UpdateBookCommand, UpdatedBookResponse> {
         private final BookRepository bookRepository;
 
         @Override

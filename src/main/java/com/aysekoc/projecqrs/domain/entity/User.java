@@ -10,8 +10,8 @@ import org.hibernate.annotations.UuidGenerator;
 import java.util.UUID;
 
 @Entity
-@Table(name="users")
-@Inheritance(strategy= InheritanceType.JOINED)
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,12 +19,12 @@ import java.util.UUID;
 public class User {
     @UuidGenerator
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private UUID id;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 }

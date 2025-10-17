@@ -6,8 +6,6 @@ import com.aysekoc.projecqrs.application.book.command.create.CreatedBookResponse
 import com.aysekoc.projecqrs.application.book.command.update.UpdateBookCommand;
 import com.aysekoc.projecqrs.application.book.command.update.UpdatedBookResponse;
 import com.aysekoc.projecqrs.core.web.BaseController;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

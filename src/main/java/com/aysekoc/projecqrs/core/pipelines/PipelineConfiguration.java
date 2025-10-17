@@ -1,4 +1,4 @@
-package com.aysekoc.projecqrs.core;
+package com.aysekoc.projecqrs.core.pipelines;
 
 import an.awesome.pipelinr.Command;
 import an.awesome.pipelinr.Notification;
