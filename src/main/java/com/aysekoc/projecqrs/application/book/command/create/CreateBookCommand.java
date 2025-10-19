@@ -1,6 +1,7 @@
 package com.aysekoc.projecqrs.application.book.command.create;
 
 import an.awesome.pipelinr.Command;
+import com.aysekoc.projecqrs.core.pipelines.auth.AuthenticatedRequest;
 import com.aysekoc.projecqrs.domain.entity.Book;
 import com.aysekoc.projecqrs.persistence.book.BookRepository;
 import lombok.*;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateBookCommand implements Command<CreatedBookResponse> {
+public class CreateBookCommand implements Command<CreatedBookResponse>, AuthenticatedRequest {
 
     private String name;
 

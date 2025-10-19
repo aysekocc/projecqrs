@@ -1,6 +1,8 @@
 package com.aysekoc.projecqrs.application.book.command.update;
 
 import an.awesome.pipelinr.Command;
+import com.aysekoc.projecqrs.core.pipelines.auth.AuthenticatedRequest;
+import com.aysekoc.projecqrs.core.pipelines.auth.AuthorizedRequest;
 import com.aysekoc.projecqrs.domain.entity.Book;
 import com.aysekoc.projecqrs.persistence.book.BookRepository;
 import lombok.AllArgsConstructor;
@@ -9,16 +11,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateBookCommand implements Command<UpdatedBookResponse> {
+public class UpdateBookCommand implements Command<UpdatedBookResponse>, AuthorizedRequest {
 
     private UUID id;
     private String name;
+
+    @Override
+    public List<String> getRequiredRoles() {
+        return List.of("Admin","Book.Update");
+    }
 
     @Component
     @AllArgsConstructor
