@@ -14,5 +14,9 @@ spring:
       ddl-auto: update
 server:
   port: 8080
+jwt:
+  expiration : 600000
+  secret : "xH2T5oQkps9kVMrLxEWCNN1fIVApRLyBJdqPmD2akJmLele48q2Q3M6tua6kmcCd"
+
 
 
