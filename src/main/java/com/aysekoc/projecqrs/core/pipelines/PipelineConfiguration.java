@@ -13,14 +13,14 @@ import org.springframework.context.annotation.Configuration;
 public class PipelineConfiguration {
 
     @Bean
-    public Pipeline pipeline(
+    Pipeline pipeline(
             ObjectProvider<Command.Handler> commandHandlers,
             ObjectProvider<Notification.Handler> notificationHandlers,
             ObjectProvider<Command.Middleware> middlewares) {
 
         return new Pipelinr()
-                .with(() -> commandHandlers.stream())
-                .with(() -> notificationHandlers.stream())
-                .with((Command.Middlewares) middlewares::orderedStream);
+                .with(() -> commandHandlers.stream()) //stream->liste
+                .with(() -> notificationHandlers.stream()) //stream->liste
+                .with((Command.Middlewares) middlewares::orderedStream); //orderedstream->sıralı liste
     }
 }

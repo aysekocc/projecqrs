@@ -6,7 +6,9 @@ import com.aysekoc.projecqrs.application.book.command.mapper.BookMapper;
 import com.aysekoc.projecqrs.domain.entity.Author;
 import com.aysekoc.projecqrs.domain.entity.Book;
 import com.aysekoc.projecqrs.persistence.book.BookRepository;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CreateBookCommand implements Command<CreatedBookResponse> {
     @NotBlank
+    @Size(min = 3, max = 100)
     private String name;
 
     private UUID authorId;
