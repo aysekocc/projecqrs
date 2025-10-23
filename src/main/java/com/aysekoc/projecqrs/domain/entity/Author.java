@@ -7,24 +7,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name="books")
 @Getter
 @Setter
+@Table(name="authors")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
-    @UuidGenerator
+public class Author {
     @Id
-    @Column(name="id")
+    @UuidGenerator
     private UUID id;
 
-    @Column(name="name")
-    private String name;
+    @Column(name="first_name")
+    private String firstName;
 
-    @ManyToOne
-    @JoinColumn(name="author_id")
-    private Author author;
+    @Column(name="last_name")
+    private String lastName;
+
+    @OneToMany(mappedBy = "author")
+    private Set<Book> books;
 }
