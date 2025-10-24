@@ -2,6 +2,7 @@ package com.aysekoc.projecqrs.core.pipelines.validation;
 
 import an.awesome.pipelinr.Command;
 import jakarta.validation.ConstraintViolation;
+
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -21,9 +24,14 @@ public class ValidationBehavior implements Command.Middleware {
     @Override
     public <R, C extends Command<R>> R invoke(C c, Next<R> next) {
         Set<ConstraintViolation<C>> errors = validator.validate(c);
-        if (!errors.isEmpty()) {
+        if(!errors.isEmpty()) {
             //TODO : Errorları exception olarak fırlat
-            throw new ValidationException(errers.stream().map(err->err.getMessage().toList()));
+            throw new ValidationException(
+                    errors
+                            .stream()
+                            .map(ConstraintViolation::getMessage)
+                            .collect(Collectors.joining(", "))
+            );
         }
         return next.invoke();
     }
